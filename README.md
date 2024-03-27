@@ -1,2 +1,2 @@
-```Testing a work```
+```python manage.py runserver```
 
