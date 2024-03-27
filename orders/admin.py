@@ -19,7 +19,6 @@ class BuyerAdmin(admin.ModelAdmin):
 
 admin.site.register(Supplier, SupplierAdmin)
 admin.site.register(Buyer, BuyerAdmin)
-
 admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(Delivery)

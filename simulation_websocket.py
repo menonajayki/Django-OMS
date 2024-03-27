@@ -20,7 +20,7 @@ def on_open(ws):
     ws.send(json.dumps(service_request))
 
 if __name__ == "__main__":
-    websocket.enableTrace(False)  # Disable colored output
+    websocket.enableTrace(False)
     ws = websocket.WebSocketApp("ws://localhost:8000/ws/service/",
                                 on_message=on_message,
                                 on_error=on_error,
