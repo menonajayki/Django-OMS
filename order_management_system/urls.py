@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from orders import routing
 from .views import dashboard
 
 urlpatterns = [
@@ -23,4 +23,5 @@ urlpatterns = [
     path('', dashboard, name='dashboard'),
     path('users/', include('users.urls')),
     path('orders/', include('orders.urls')),
+    path('ws/', include(routing.websocket_urlpatterns)),
 ]
