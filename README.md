@@ -1,6 +1,23 @@
+# STEPS TO FOLLOW FOR RUNNING  THE APPLICATION:
+
+Install Requirements:
+
+```pip install -r requirements.txt```
+
+Migrate Database:
+
+```python manage.py migrate```
+
+Create a superuser:
+
+```python manage.py createsuperuser```
+
 To initiate the application run this:
 
 ```python manage.py runserver```
+
+
+# COMPONENTS:
 
 The application components and flow are as follows:
 

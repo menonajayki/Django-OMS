@@ -1,5 +1,6 @@
 from django.db import models
-
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 from users.models import User
 
 
@@ -62,3 +63,25 @@ class Delivery(models.Model):
 
     def __str__(self):
         return self.courier_name
+
+    def save(self, *args, **kwargs):
+        created = not self.pk
+        super().save(*args, **kwargs)
+        if created:
+            # Send WebSocket message after saving
+            self.send_delivery_message()
+
+    def send_delivery_message(self):
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'orders',  # Room name
+            {
+                'type': 'delivery_message',
+                'message': {
+                    'order_id': self.order.id,
+                    'courier_name': self.courier_name,
+                    'status': 'Delivered',
+                    'message': f"Delivery for Order {self.order.id} has been completed."
+                }
+            }
+        )

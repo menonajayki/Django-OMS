@@ -13,6 +13,13 @@ from .views import (
     DeliveryListView,
 )
 
+# WebSocket routing for OrderConsumer
+from . import consumers
+
+websocket_urlpatterns = [
+    path('ws/orders/', consumers.OrderConsumer.as_asgi()),
+]
+
 urlpatterns = [
     path('create-supplier/', create_supplier, name='create-supplier'),
     path('create-buyer/', create_buyer, name='create-buyer'),
@@ -26,3 +33,6 @@ urlpatterns = [
     path('order-list/', OrderListView.as_view(), name='order-list'),
     path('delivery-list/', DeliveryListView.as_view(), name='delivery-list'),
 ]
+
+# WebSocket URL patterns
+urlpatterns += websocket_urlpatterns

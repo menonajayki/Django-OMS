@@ -13,15 +13,21 @@ def on_close(ws):
 def on_open(ws):
     print("WebSocket connection established")
 
-    # Send a service request
-    service_request = {
-        'order': 'Some data to process',
+    # Create a JSON request
+    request_data = {
+        "product_name": "Truck Green 02",
+        "quantity": 10,
+        "price": 25.99,
+        "color": "Blue",
+        "size": "Medium"
     }
-    ws.send(json.dumps(service_request))
+
+    # Convert JSON request to a string and send
+    ws.send(json.dumps(request_data))
 
 if __name__ == "__main__":
     websocket.enableTrace(False)
-    ws = websocket.WebSocketApp("ws://localhost:8000/ws/service/",
+    ws = websocket.WebSocketApp("ws://localhost:8000/ws/orders/",
                                 on_message=on_message,
                                 on_error=on_error,
                                 on_close=on_close)
