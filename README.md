@@ -57,44 +57,44 @@ The application components and flow are as follows:
     |  - Django App for Managing    |
     |    Orders and Transactions    |
     +-------------------------------+
-        |         |         |
-        v         v         v
+                  |         
+                  v         
     +-------------------------------+
     |          models.py            |
     |  - Define Order and Product   |
     |    Database Models            |
     +-------------------------------+
-        |         |
-        v         v
+                  |
+                  v
     +-------------------------------+
     |          views.py             |
     | - Views for Order Processing, |
     |    Cart Management, Checkout, |
     |    and Order History          |
     +-------------------------------+
-        |         |
-        v         v
+                  |
+                  v
     +-------------------------------+
     |          urls.py              |
     | - URL Routing for Orders App  |
     +-------------------------------+
-        |         |
-        v         v
+                 |
+                 v
     +-------------------------------+
     |          admin.py             |
     |  - Admin Panel Registration   |
     |    for Order Management       |
     +-------------------------------+
-        |         |
-        v         v
+                 |
+                 v
     +-------------------------------+
     |          forms.py             |
     |  - Forms for Order Creation,  |
     |    Payment Information,       |
     |    and Shipping Details       |
     +-------------------------------+
-        |         |
-        v         v
+                 |
+                 v
     +-------------------------------+
     |       consumers.py            |
     |  - Websocket Consumers for    |
