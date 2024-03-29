@@ -24,8 +24,6 @@ class Buyer(models.Model):
         return self.name
 
 
-
-
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
     sortno = models.PositiveIntegerField()
@@ -74,7 +72,7 @@ class Delivery(models.Model):
     def send_delivery_message(self):
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
-            'orders',  # Room name
+            'orders',
             {
                 'type': 'delivery_message',
                 'message': {

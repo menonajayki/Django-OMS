@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-
 from users.models import User
 from .models import (
     Supplier,
@@ -20,7 +19,7 @@ from .forms import (
 )
 
 
-# Supplier views
+# Supplier
 @login_required(login_url='login')
 def create_supplier(request):
     forms = SupplierForm()
@@ -51,8 +50,7 @@ class SupplierListView(ListView):
     template_name = 'store/supplier_list.html'
     context_object_name = 'supplier'
 
-
-# Buyer views
+# Buyer
 @login_required(login_url='login')
 def create_buyer(request):
     forms = BuyerForm()
@@ -84,7 +82,7 @@ class BuyerListView(ListView):
     context_object_name = 'buyer'
 
 
-# Product views
+# Product
 @login_required(login_url='login')
 def create_product(request):
     forms = ProductForm()
@@ -105,7 +103,7 @@ class ProductListView(ListView):
     context_object_name = 'product'
 
 
-# Order views
+# Order
 @login_required(login_url='login')
 def create_order(request):
     forms = OrderForm()

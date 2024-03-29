@@ -1,6 +1,7 @@
 import websocket
 import json
 
+
 def on_message(ws, message):
     print("Received acknowledgment:", json.loads(message))
 
@@ -13,7 +14,7 @@ def on_close(ws):
 def on_open(ws):
     print("WebSocket connection established")
 
-    # Create a JSON request
+    # Place an order
     request_data = {
         "product_name": "Truck Green 02",
         "quantity": 10,
@@ -22,7 +23,7 @@ def on_open(ws):
         "size": "Medium"
     }
 
-    # Convert JSON request to a string and send
+    # Send the order to the application
     ws.send(json.dumps(request_data))
 
 if __name__ == "__main__":

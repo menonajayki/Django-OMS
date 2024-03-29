@@ -3,6 +3,7 @@ from asgiref.sync import sync_to_async
 from orders.models import Order, Supplier, Buyer, Product
 import json
 
+
 class OrderConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_group_name = 'orders'
@@ -22,13 +23,13 @@ class OrderConsumer(AsyncWebsocketConsumer):
         print(text_data)
         data_dict = json.loads(text_data)
         product_name = data_dict.get("product_name", "")
-        print (product_name)
+        print(product_name)
 
         await self.create_order(product_name)
 
     @sync_to_async
     def create_order(self, product_name):
-        # Hardcoded values for design, color, and status
+        # Hardcoded values changes might be needed
         supplier = Supplier.objects.first()
         buyer = Buyer.objects.first()
         design = "v1"
@@ -50,7 +51,7 @@ class OrderConsumer(AsyncWebsocketConsumer):
             return f"Product {product_name} does not exist"
 
     async def delivery_message(self, event):
-        # Send delivery message back to the WebSocket client
+        # After delivery response sent to websocket
         await self.send(text_data=json.dumps({
             'type': 'delivery_message',
             'message': event['message']

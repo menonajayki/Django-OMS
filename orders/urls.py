@@ -1,5 +1,5 @@
 from django.urls import path
-
+from . import consumers
 from .views import (
     create_supplier,
     create_buyer,
@@ -13,8 +13,6 @@ from .views import (
     DeliveryListView,
 )
 
-# WebSocket routing for OrderConsumer
-from . import consumers
 
 websocket_urlpatterns = [
     path('ws/orders/', consumers.OrderConsumer.as_asgi()),
@@ -34,5 +32,5 @@ urlpatterns = [
     path('delivery-list/', DeliveryListView.as_view(), name='delivery-list'),
 ]
 
-# WebSocket URL patterns
+# WebSocket URL
 urlpatterns += websocket_urlpatterns
