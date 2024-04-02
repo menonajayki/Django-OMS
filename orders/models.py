@@ -40,7 +40,7 @@ class Order(models.Model):
         ('approved', 'Approved'),
         ('processing', 'Processing'),
         ('complete', 'Complete'),
-        ('bulk', 'Bulk'),
+        ('delivered', 'Delivered'),
     )
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
