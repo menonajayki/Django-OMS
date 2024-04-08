@@ -2,6 +2,7 @@ from django.db import models
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from users.models import User
+from octorest import OctoRest
 
 
 class Supplier(models.Model):
@@ -52,6 +53,26 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+    # Octoprint Integration
+    def save(self, *args, **kwargs):
+        created = not self.pk
+        super().save(*args, **kwargs)
+        if created and self.status == 'approved':
+            self.print_order()
+
+    def print_order(self):
+        #octo_url = "http://octopi.local/"
+        #octo_apikey = "3342ACFDFCF0460AA0BF4E148A125F3B"
+        #client = OctoRest(url=octo_url, apikey=octo_apikey)
+
+        file_path = "head.gcode"
+        print("Initiating print job...")
+        #client.select(file_path, print=True)
+        #client.start()
+        print("Print job started successfully!")
+
 
 
 class Delivery(models.Model):
