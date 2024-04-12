@@ -16,7 +16,7 @@ def on_open(ws):
 
     # Place an order
     request_data = {
-        "product_name": "Truck Green 02",
+        "product_name": "Truck Red 01",
         "quantity": 10,
         "price": 25.99,
         "color": "Blue",

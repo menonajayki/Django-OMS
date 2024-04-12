@@ -8,8 +8,8 @@ def main():
     file_path = "red.gcode" # give name of file to be printed
 
     try:
-
         """
+
         print("Toggling the print!")
         client.toggle()
         """

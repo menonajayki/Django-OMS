@@ -54,26 +54,24 @@ class Order(models.Model):
     def __str__(self):
         return self.product.name
 
-
-    # Octoprint Integration
+    # Octoprint Integration -- also done at admin, make this modular
     def save(self, *args, **kwargs):
         created = not self.pk
         super().save(*args, **kwargs)
         if created and self.status == 'approved':
             self.print_order()
 
+
     def print_order(self):
-        #octo_url = "http://octopi.local/"
-        #octo_apikey = "3342ACFDFCF0460AA0BF4E148A125F3B"
-        #client = OctoRest(url=octo_url, apikey=octo_apikey)
+        octo_url = "http://octopi.local/"
+        octo_apikey = "3342ACFDFCF0460AA0BF4E148A125F3B"
+        client = OctoRest(url=octo_url, apikey=octo_apikey)
 
-        file_path = "head.gcode"
+        file_path = "red.gcode"
         print("Initiating print job...")
-        #client.select(file_path, print=True)
-        #client.start()
+        client.select(file_path)
+        client.start()
         print("Print job started successfully!")
-
-
 
 class Delivery(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
